@@ -1,0 +1,50 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Diretórios do ambiente Node.js
+node_modules/
+.pnpm-debug.log
+npm-debug.log
+yarn-error.log
+.pnp/
+.pnp.js
+
+# Build e output
+dist/
+build/
+
+# Dependências de pacotes
+package-lock.json
+yarn.lock
+.pnpm-lock.yaml
+
+# Diretórios temporários
+temp/
+tmp/
+.cache/
+.DS_Store
+
+# Configurações de sistema operacional
+Thumbs.db
+.DS_Store
+
+# Configurações de IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Arquivos de ambiente
+.env
+.env.local
+.env.*.local
+
+# Configurações de teste e cobertura
+coverage/
+.nyc_output/
+jest/
