@@ -1,27 +1,27 @@
 const { consultarTodosTribunais } = require('../services/tribunalService');
 
-// Controller para buscar processos
 async function buscarProcessos(req, res) {
   const { numeroProcesso } = req.body;
 
-  if (!numeroProcesso) {
-    return res.status(400).json({ error: 'Número do processo é obrigatório.' });
+  if (!numeroProcesso || typeof numeroProcesso !== 'string' || numeroProcesso.trim() === '') {
+    return res.status(400).json({ error: 'Número do processo é obrigatório e deve ser uma string válida.' });
   }
 
   try {
-    // Consulta as APIs dos tribunais
     const resultados = await consultarTodosTribunais(numeroProcesso);
 
-    // Filtrar resultados relevantes
+    if (!Array.isArray(resultados) || resultados.length === 0) {
+      return res.status(500).json({ error: 'Erro ao processar os resultados dos tribunais.' });
+    }
+
     const respostasRelevantes = resultados.filter(
-      (item) => item.resultado && item.resultado.hits.total.value > 0
+      (item) => item.resultado && item.resultado.hits?.total?.value > 0
     );
 
     if (respostasRelevantes.length === 0) {
       return res.status(404).json({ message: 'Processo não encontrado em nenhum tribunal.' });
     }
 
-    // Retorna os resultados organizados
     res.status(200).json({
       totalResultados: respostasRelevantes.length,
       dados: respostasRelevantes,

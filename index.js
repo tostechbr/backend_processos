@@ -2,7 +2,7 @@ const express = require('express');
 const processRoutes = require('./routes/processRoutes');
 
 const app = express();
-const PORT = 3000;
+const PORT = 3001;
 
 app.use(express.json()); // Middleware para interpretar JSON
 app.use('/api', processRoutes); // Define o prefixo de rotas
